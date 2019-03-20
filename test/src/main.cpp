@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include <ddslinker/DDSLinker.h>
+#include <ddslinker/Input.h>
 #include <memory>
 
 using namespace std;
@@ -14,9 +14,9 @@ int main(int argc, char **argv)
 class DDSTest : public ::testing::Test
 {
 protected:
-    unique_ptr<DDSLinker> linker;
+    unique_ptr<Input<int>> linker;
     virtual void SetUp() override {
-        linker = unique_ptr<DDSLinker>(new DDSLinker());
+        linker = unique_ptr<Input<int>>(new Input<int>());
     }
     virtual void TearDown() override {
 

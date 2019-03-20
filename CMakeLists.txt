@@ -14,7 +14,7 @@ find_package(YARP REQUIRED)
 # Create target and set properties
 
 add_library(ddslinker
-        src/DDSLinker.cpp
+        src/Input.cpp
 )
 
 #Add an alias so that library can be used inside the build tree, e.g. when testing
