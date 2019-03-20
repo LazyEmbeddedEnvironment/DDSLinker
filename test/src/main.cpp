@@ -1,28 +1,28 @@
 #include <gtest/gtest.h>
 #include <ddslinker/DDSLinker.h>
+#include <memory>
 
-TEST(JsonUtilsTest, loadFromFile)
-{
-    auto doc = jsonutils::loadJson("/home/pablo/Documents/test.json");
-
-    ASSERT_TRUE(doc);
-    ASSERT_TRUE(doc->HasMember("source"));
-    auto source = (*doc)["source"].GetString();
-    ASSERT_STREQ("file", source);
-}
-
-TEST(JsonUtilsTest, loadFromUrl)
-{
-    auto doc = jsonutils::loadJson("https://books.com/novels");
-
-    ASSERT_TRUE(doc);
-    ASSERT_TRUE(doc->HasMember("source"));
-    auto source = (*doc)["source"].GetString();
-    ASSERT_STREQ("url", source);
-}
+using namespace std;
+using namespace Friend::DDS;
 
 int main(int argc, char **argv)
 {
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
+}
+
+class DDSTest : public ::testing::Test
+{
+protected:
+    unique_ptr<DDSLinker> linker;
+    virtual void SetUp() override {
+        linker = unique_ptr<DDSLinker>(new DDSLinker());
+    }
+    virtual void TearDown() override {
+
+    }
+};
+
+TEST_F(DDSTest, classCreated) {
+    ASSERT_TRUE(linker != nullptr);
 }

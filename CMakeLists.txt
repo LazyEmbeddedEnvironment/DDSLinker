@@ -8,6 +8,7 @@ list(INSERT CMAKE_MODULE_PATH 0 ${CMAKE_SOURCE_DIR}/cmake)
 # Declare dependencies
 find_package(Boost 1.55 REQUIRED COMPONENTS regex)
 find_package(RapidJSON 1.0 REQUIRED MODULE)
+find_package(YARP REQUIRED)
 
 ##############################################
 # Create target and set properties
@@ -36,6 +37,7 @@ target_link_libraries(ddslinker
         Boost::boost RapidJSON::RapidJSON
     PRIVATE
         Boost::regex
+        ${YARP_LIBRARIES}
 )
 
 ##############################################

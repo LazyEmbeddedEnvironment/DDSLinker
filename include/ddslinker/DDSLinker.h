@@ -1,17 +1,20 @@
 #pragma once
 
 #include <string>
+#include <yarp/os/BufferedPort.h>
+#include <yarp/os/Bottle.h>
 
-#include <boost/optional.hpp>
-#include <rapidjson/document.h>
+namespace Friend {
+namespace DDS {
 
-namespace jsonutils
+
+class DDSLinker
 {
-    /**
-     * Location agnostic json loader.
-     *
-     * @param location location of the json file. Can be either a URL or a file path.
-     */
-    boost::optional<rapidjson::Document> loadJson(const std::string& url);
-}
+public:
+    DDSLinker();
+
+};
+
+} // namespace DDSLinker
+} // namespace Friend
 
