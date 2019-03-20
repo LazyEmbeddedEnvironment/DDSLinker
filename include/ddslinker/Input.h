@@ -8,21 +8,13 @@
 
 
 using yarp::os::Bottle;
-using yarp::os::Port;
 using yarp::os::ConnectionReader;
 using yarp::os::PortReader;
 using namespace std;
+
 namespace Friend {
 namespace DDS {
-template <typename T>
-class Input {
-public:
-    Input();
-//    typedef function<void(T&)> readCallback;
-//    void create(const string& name, const readCallback& callback);
-private:
-    Port port;
-};
+
 class YarpReaderDataProcessor : public PortReader {
 public:
     typedef std::function<void(ConnectionReader&)> readCallback;
@@ -35,6 +27,20 @@ private:
     readCallback _callback;
 };
 
+template <typename T>
+class Input {
+public:
+    typedef function<void(T&)> readCallback;
+    Input();
+    Input(const string& name);
+    Input(const string& name, const readCallback& callback);
+    virtual void create(const string& name);
+    virtual void create(const string& name, const readCallback& callback);
+private:
+    YarpReaderDataProcessor _dataProcessor;
+    T _lastState;
+    readCallback _callback;
+};
 } // namespace DDSLinker
 } // namespace Friend
 
