@@ -2,7 +2,7 @@
 
 #include <string>
 #include <functional>
-#include <yarp/os/Port.h>
+#include <yarp/os/PortReader.h>
 #include <yarp/os/Bottle.h>
 #include <yarp/os/ConnectionReader.h>
 
