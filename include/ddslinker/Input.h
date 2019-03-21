@@ -6,6 +6,7 @@
 #include <yarp/os/Bottle.h>
 #include <yarp/os/ConnectionReader.h>
 
+#include "../../src/Base.h"
 
 using yarp::os::Bottle;
 using yarp::os::ConnectionReader;
@@ -19,7 +20,7 @@ class YarpReaderDataProcessor : public PortReader {
 public:
     typedef std::function<void(ConnectionReader&)> readCallback;
     virtual void setCallback(const readCallback& callback) { _callback = callback; }
-    virtual bool read(ConnectionReader& data) override  {
+    bool read(ConnectionReader& data) override {
         _callback(data);
         return true;
     }
@@ -28,11 +29,11 @@ private:
 };
 
 template <typename T>
-class Input {
+class Input : public Friend::DDS::Base<T> {
 public:
     typedef function<void(T&)> readCallback;
     Input();
-    Input(const string& name);
+    explicit Input(const string& name);
     Input(const string& name, const readCallback& callback);
     virtual void create(const string& name);
     virtual void create(const string& name, const readCallback& callback);
@@ -40,6 +41,7 @@ private:
     YarpReaderDataProcessor _dataProcessor;
     T _lastState;
     readCallback _callback;
+
 };
 } // namespace DDSLinker
 } // namespace Friend

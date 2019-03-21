@@ -15,7 +15,7 @@ find_package(YARP REQUIRED)
 
 add_library(ddslinker
         src/Input.cpp
-)
+        src/Base.h)
 
 #Add an alias so that library can be used inside the build tree, e.g. when testing
 add_library(DDSLinker::ddslinker ALIAS ddslinker)
@@ -29,7 +29,7 @@ target_include_directories(ddslinker
         ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 
-target_compile_features(ddslinker PRIVATE cxx_auto_type)
+target_compile_features(ddslinker PRIVATE cxx_std_17)
 target_compile_options(ddslinker PRIVATE $<$<CXX_COMPILER_ID:GNU>:-Wall>)
 
 target_link_libraries(ddslinker

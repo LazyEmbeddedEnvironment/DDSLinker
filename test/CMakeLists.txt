@@ -20,6 +20,6 @@ add_subdirectory(${CMAKE_BINARY_DIR}/googletest-src
                  EXCLUDE_FROM_ALL)
 
 # Now simply link against gtest or gtest_main as needed. Eg
-add_executable(dds_linker_test src/main.cpp)
+add_executable(dds_linker_test src/main.cpp src/Base_test.cpp)
 target_compile_features(dds_linker_test PRIVATE cxx_auto_type)
 target_link_libraries(dds_linker_test gtest_main DDSLinker::ddslinker)
