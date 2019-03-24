@@ -4,6 +4,7 @@
 #pragma once
 
 #include <string>
+#include <ddslinker/GetTypeName.h>
 
 using namespace std;
 
@@ -14,10 +15,11 @@ template <typename T>
 class Base {
 public:
     Base();
+    virtual ~Base() {};
     explicit Base(const string& name);
     virtual void create(const string& name);
     virtual T read();
-    virtual bool isConnected();
+    virtual bool isConnected() = 0;
 private:
     string _myName;
     T _lastState;
@@ -32,17 +34,12 @@ Base<T>::Base(const string &name) {
 }
 template<typename T>
 void Base<T>::create(const string &name) {
-    this->_myName = name;
+    this->_myName = GetTypeName<T>()+"."+name;
 }
 template<typename T>
 T Base<T>::read() {
     return _lastState; // TODO what to do for initial conditions
 }
-template<typename T>
-bool Base<T>::isConnected() {
-    return false;
-}
-
 
 } // namespace DDS
 } // namespace Friend

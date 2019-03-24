@@ -15,7 +15,7 @@ find_package(YARP REQUIRED)
 
 add_library(ddslinker
         src/Input.cpp
-        src/Base.h)
+        src/Base.h include/ddslinker/GetTypeName.h)
 
 #Add an alias so that library can be used inside the build tree, e.g. when testing
 add_library(DDSLinker::ddslinker ALIAS ddslinker)

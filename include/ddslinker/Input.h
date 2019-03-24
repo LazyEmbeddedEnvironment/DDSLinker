@@ -37,6 +37,7 @@ public:
     Input(const string& name, const readCallback& callback);
     virtual void create(const string& name);
     virtual void create(const string& name, const readCallback& callback);
+    bool isConnected() override { return false; };
 private:
     YarpReaderDataProcessor _dataProcessor;
     T _lastState;
