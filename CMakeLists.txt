@@ -1,6 +1,28 @@
 cmake_minimum_required(VERSION 3.5)
 project(libddslinker VERSION 1.0.0 LANGUAGES CXX)
 
+###################################################
+# Download and unpack appbase at configure time
+configure_file(${CMAKE_SOURCE_DIR}/cmake/AppBase-CMakeLists.txt.in ${CMAKE_BINARY_DIR}/appbase-download/CMakeLists.txt)
+execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
+        RESULT_VARIABLE result
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/appbase-download )
+if(result)
+    message(FATAL_ERROR "CMake step for appbase failed: ${result}")
+endif()
+execute_process(COMMAND ${CMAKE_COMMAND} --build .
+        RESULT_VARIABLE result
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/appbase-download )
+if(result)
+    message(FATAL_ERROR "Build step for appbase failed: ${result}")
+endif()
+
+# Add appbase directly to our build. This defines appbase
+add_subdirectory(${CMAKE_BINARY_DIR}/appbase-src
+        ${CMAKE_BINARY_DIR})
+
+
+##############################################
 #Make sure that custom modules like FindRapidJSON are found
 list(INSERT CMAKE_MODULE_PATH 0 ${CMAKE_SOURCE_DIR}/cmake)
 
@@ -9,6 +31,7 @@ list(INSERT CMAKE_MODULE_PATH 0 ${CMAKE_SOURCE_DIR}/cmake)
 find_package(Boost 1.55 REQUIRED COMPONENTS regex)
 find_package(RapidJSON 1.0 REQUIRED MODULE)
 find_package(YARP REQUIRED)
+find_package(appbase REQUIRED)
 
 ##############################################
 # Create target and set properties
@@ -38,6 +61,7 @@ target_link_libraries(ddslinker
     PRIVATE
         Boost::regex
         ${YARP_LIBRARIES}
+        appbase
 )
 
 ##############################################

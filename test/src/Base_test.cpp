@@ -10,8 +10,6 @@
 #define protected public
 #include "../../src/Base.h"
 
-//using Friend::DDS::Base;
-
 const string name = "someName";
 const string expectedName = "int.someName";
 
