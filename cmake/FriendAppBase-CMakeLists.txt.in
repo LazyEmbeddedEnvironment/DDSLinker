@@ -1,0 +1,15 @@
+cmake_minimum_required(VERSION 3.5.0)
+
+project(friendappbase-download NONE)
+
+include(ExternalProject)
+ExternalProject_Add(friendappbase
+  GIT_REPOSITORY    https://github.com/LazyEmbeddedEnvironment/AppBase-Extended.git
+  GIT_TAG           master
+  SOURCE_DIR        "${CMAKE_BINARY_DIR}/friendappbase-src"
+  BINARY_DIR        "${CMAKE_BINARY_DIR}/friendappbase-build"
+  CONFIGURE_COMMAND ""
+  BUILD_COMMAND     ""
+  INSTALL_COMMAND   ""
+  TEST_COMMAND      ""
+)
