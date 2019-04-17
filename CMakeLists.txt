@@ -39,7 +39,7 @@ add_library(ddslinker
         src/Base.h include/ddslinker/GetTypeName.h)
 
 #Add an alias so that library can be used inside the build tree, e.g. when testing
-add_library(DDSLinker::ddslinker ALIAS ddslinker)
+add_library(Friend::DDSLinker ALIAS ddslinker)
 
 #Set target properties
 target_include_directories(ddslinker
@@ -85,7 +85,7 @@ install(EXPORT ddslinker-targets
   FILE
     DDSLinkerTargets.cmake
   NAMESPACE
-    DDSLinker::
+    Friend::
   DESTINATION
     ${INSTALL_CONFIGDIR}
 )
@@ -117,7 +117,7 @@ configure_file(${CMAKE_CURRENT_LIST_DIR}/cmake/FindRapidJSON.cmake
     ${CMAKE_CURRENT_BINARY_DIR}/FindRapidJSON.cmake
     COPYONLY)
 
-export(EXPORT ddslinker-targets FILE ${CMAKE_CURRENT_BINARY_DIR}/DDSLinkerTargets.cmake NAMESPACE DDSLinker::)
+export(EXPORT ddslinker-targets FILE ${CMAKE_CURRENT_BINARY_DIR}/DDSLinkerTargets.cmake NAMESPACE Friend::)
 
 #Register package in user's package registry
 export(PACKAGE DDSLinker)
