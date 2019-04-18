@@ -19,12 +19,6 @@ using bpo::variables_map;
 template <typename T>
 class Base : public AppBase::AppBase {
 public:
-//    APPBASE_PLUGIN_REQUIRES( (AppBase) );
-//    virtual void set_program_options( options_description& cli, options_description& cfg ) override {};
-//    void plugin_initialize( const variables_map& options ) {};
-//    void plugin_startup() {};
-//    void plugin_shutdown() {};
-
     Base();
     virtual ~Base() {};
     explicit Base(const string& name);
