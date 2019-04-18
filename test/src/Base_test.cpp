@@ -8,15 +8,16 @@
 
 #define private public
 #define protected public
-#include "../../src/Base.h"
+#include "ddslinker/Base.h"
 
 const string name = "someName";
-const string expectedName = "int.someName";
+const string cmakeProjectName = "libddslinker";
+const string expectedName = "int."+cmakeProjectName+".0."+name;
 
 class BaseInheritor : public Friend::DDS::Base<int>
 {
 public:
-    bool isConnected() override {};
+    bool isConnected() override { return false; };
     using Friend::DDS::Base<int>::Base;
     ~BaseInheritor() { };
 };

@@ -5,14 +5,19 @@
 
 #include <string>
 #include <ddslinker/GetTypeName.h>
+#include <friend/appbase/AppBase.h>
 
 using namespace std;
 
 namespace Friend {
 namespace DDS {
 
+namespace bpo = boost::program_options;
+using bpo::options_description;
+using bpo::variables_map;
+
 template <typename T>
-class Base {
+class Base : public AppBase::AppBase {
 public:
     Base();
     virtual ~Base() {};
@@ -34,11 +39,11 @@ Base<T>::Base(const string &name) {
 }
 template<typename T>
 void Base<T>::create(const string &name) {
-    this->_myName = GetTypeName<T>()+"."+name;
+    this->_myName = GetTypeName<T>()+"."+getAppName()+"."+to_string(getInstance())+"."+name;
 }
 template<typename T>
 T Base<T>::read() {
-    return _lastState; // TODO what to do for initial conditions
+    return _lastState; // TODO what to do for initial conditions, maybe use std variant map for base types
 }
 
 } // namespace DDS

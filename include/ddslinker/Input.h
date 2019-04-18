@@ -3,7 +3,7 @@
 #include <string>
 #include <functional>
 
-#include "../../src/Base.h"
+#include "Base.h"
 
 using namespace std;
 
@@ -15,7 +15,7 @@ class Input : public Friend::DDS::Base<T> {
 public:
     typedef function<void(T&)> readCallback;
     Input();
-    explicit Input(const string& name);
+    Input(const string& name);
     Input(const string& name, const readCallback& callback);
     virtual void create(const string& name);
     virtual void create(const string& name, const readCallback& callback);
@@ -23,8 +23,27 @@ public:
 private:
     T _lastState;
     readCallback _callback;
-
 };
+
+template<typename T>
+Input<T>::Input() {}
+template<typename T>
+Input<T>::Input(const string &name) {
+
+}
+template<typename T>
+Input<T>::Input(const string &name, const Input::readCallback &callback) {
+
+}
+template<typename T>
+void Input<T>::create(const string &name) {
+
+}
+template<typename T>
+void Input<T>::create(const string& name, const readCallback& callback) {
+
+}
+
 } // namespace DDSLinker
 } // namespace Friend
 
