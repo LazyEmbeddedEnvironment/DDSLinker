@@ -17,13 +17,13 @@ using bpo::options_description;
 using bpo::variables_map;
 
 template <typename T>
-class Base : public appbase::plugin<Base<T>> {
+class Base : public AppBase::AppBase {
 public:
-    APPBASE_PLUGIN_REQUIRES( (AppBase::AppBase) );
-    virtual void set_program_options( options_description& cli, options_description& cfg ) override {};
-    void plugin_initialize( const variables_map& options ) {};
-    void plugin_startup() {};
-    void plugin_shutdown() {};
+//    APPBASE_PLUGIN_REQUIRES( (AppBase) );
+//    virtual void set_program_options( options_description& cli, options_description& cfg ) override {};
+//    void plugin_initialize( const variables_map& options ) {};
+//    void plugin_startup() {};
+//    void plugin_shutdown() {};
 
     Base();
     virtual ~Base() {};
@@ -45,11 +45,11 @@ Base<T>::Base(const string &name) {
 }
 template<typename T>
 void Base<T>::create(const string &name) {
-    this->_myName = GetTypeName<T>()+"."+name;
+    this->_myName = GetTypeName<T>()+"."+getAppName()+"."+to_string(getInstance())+"."+name;
 }
 template<typename T>
 T Base<T>::read() {
-    return _lastState; // TODO what to do for initial conditions
+    return _lastState; // TODO what to do for initial conditions, maybe use std variant map for base types
 }
 
 } // namespace DDS
