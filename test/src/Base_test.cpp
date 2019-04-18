@@ -8,7 +8,7 @@
 
 #define private public
 #define protected public
-#include "../../src/Base.h"
+#include "ddslinker/Base.h"
 
 const string name = "someName";
 const string cmakeProjectName = "libddslinker";

@@ -35,8 +35,8 @@ find_package(FriendAppBase REQUIRED)
 # Create target and set properties
 
 add_library(ddslinker
-        src/Input.cpp
-        src/Base.h include/ddslinker/GetTypeName.h)
+        include/ddslinker/Input.h
+        include/ddslinker/Base.h include/ddslinker/GetTypeName.h)
 
 #Add an alias so that library can be used inside the build tree, e.g. when testing
 add_library(Friend::DDSLinker ALIAS ddslinker)
