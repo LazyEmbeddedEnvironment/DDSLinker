@@ -56,9 +56,9 @@ target_compile_options(ddslinker PRIVATE $<$<CXX_COMPILER_ID:GNU>:-Wall>)
 target_link_libraries(ddslinker
     PUBLIC
         Boost::boost RapidJSON::RapidJSON
+        Friend::AppBase
     PRIVATE
         Boost::regex
-        Friend::AppBase
 )
 
 ##############################################
