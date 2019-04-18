@@ -21,7 +21,6 @@ public:
     virtual void create(const string& name, const readCallback& callback);
     bool isConnected() override { return false; };
 private:
-    T _lastState;
     readCallback _callback;
 };
 
