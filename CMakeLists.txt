@@ -30,6 +30,7 @@ list(INSERT CMAKE_MODULE_PATH 0 ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 find_package(Boost 1.55 REQUIRED COMPONENTS regex)
 find_package(RapidJSON 1.0 REQUIRED MODULE)
 find_package(FriendAppBase REQUIRED)
+find_package(OpenDDS REQUIRED)
 
 ##############################################
 # Create target and set properties
